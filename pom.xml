@@ -6,41 +6,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.andrestubbe</groupId>
-    <artifactId>_BluePrint</artifactId>
-    <version>main-SNAPSHOT</version>
+    <artifactId>FastAIReasoner</artifactId>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
-    <name>FastXXX</name>
-    <description>Native Windows XXX API for Java</description>
-    <url>https://github.com/andrestubbe/FastXXX</url>
+    <name>FastAIReasoner</name>
+    <description>Multi-step reasoning, Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), and heuristic planning engine for Java</description>
+    <url>https://github.com/andrestubbe/FastAIReasoner</url>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <name>FastJava Team</name>
-            <organization>FastJava</organization>
-            <organizationUrl>https://github.com/andrestubbe</organizationUrl>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:git://github.com/andrestubbe/FastXXX.git</connection>
-        <developerConnection>scm:git:ssh://github.com:andrestubbe/FastXXX.git</developerConnection>
-        <url>https://github.com/andrestubbe/FastXXX/tree/main</url>
-    </scm>
 
     <repositories>
         <repository>
@@ -50,11 +28,10 @@
     </repositories>
 
     <dependencies>
-        <!-- FastCore - Unified JNI loader -->
         <dependency>
             <groupId>com.github.andrestubbe</groupId>
-            <artifactId>FastCore</artifactId>
-            <version>main-SNAPSHOT</version>
+            <artifactId>fastai</artifactId>
+            <version>0.1.4</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -65,22 +42,7 @@
     </dependencies>
 
     <build>
-        <resources>
-            <!-- Include native DLL in JAR (loaded from build folder) -->
-            <resource>
-                <directory>build</directory>
-                <includes>
-                    <include>*.dll</include>
-                </includes>
-            </resource>
-            <!-- Standard resources -->
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-
         <plugins>
-            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -89,92 +51,6 @@
                     <source>17</source>
                     <target>17</target>
                 </configuration>
-            </plugin>
-
-            <!-- Maven Surefire Plugin for Tests -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-
-            <!-- Maven JAR Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <!-- Maven Source Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Maven Javadoc Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Maven Assembly Plugin for FatJAR -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.6.0</version>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <!-- Produce clean final name: fastXXX-1.0.0.jar without -jar-with-dependencies suffix -->
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${project.artifactId}-${project.version}</finalName>
-                    <archive>
-                        <manifest>
-                            <!-- Note: mainClass is usually meant for Demo execution, can be skipped for pure lib -->
-                            <mainClass>fastXXX.Demo</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
