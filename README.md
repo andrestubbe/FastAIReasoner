@@ -12,6 +12,10 @@
 
 FastAIReasoner provides structured cognitive search and reasoning capabilities for Java AI agents. It evaluates solution paths, explores branch states, and performs self-consistency verification before actions are executed in `FastAIAgent` or `FastAIRuntime`.
 
+<p align="center">
+  <img src="docs/reasoner_strategies.jpg" alt="FastAIReasoner Cognitive Strategies" width="850">
+</p>
+
 ---
 
 ## Quick Start — Example
