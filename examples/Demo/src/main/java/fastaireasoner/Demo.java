@@ -1,8 +1,12 @@
 package fastaireasoner;
 
 import fastai.AI;
+import fastai.AIRequest;
+import fastai.AIResponse;
+import fastai.Usage;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public final class Demo {
     public static void main(String[] args) {
@@ -10,26 +14,30 @@ public final class Demo {
         System.out.println("     FastAIReasoner - Cognitive Planning Demo    ");
         System.out.println("=================================================");
 
-        // Simulated high-speed AI engine for deterministic demo verification
+        // High-speed simulated AI client implementing the unified FastAI interface
         AI mockAI = new AI() {
             @Override
-            public String ask(String prompt) {
-                return "1. Define interface\n2. Implement lock-free queue\n3. Add unit tests";
+            public AIResponse generate(AIRequest request) {
+                String sys = request.systemPrompt;
+
+                if (sys != null && sys.contains("strategic solution explorer")) {
+                    return new AIResponse("Candidate 1: Array-based ring buffer\nCandidate 2: Linked node concurrent queue\nCandidate 3: Disruptor pattern ring", Usage.ZERO, 0.0);
+                }
+                if (sys != null && sys.contains("evaluation judge")) {
+                    return new AIResponse("Selected Approach: Candidate 3 (Disruptor pattern) for lowest memory latency and zero lock contention.", Usage.ZERO, 0.0);
+                }
+                return new AIResponse("1. Define interface\n2. Implement lock-free queue\n3. Add unit tests", Usage.ZERO, 0.0);
             }
 
             @Override
-            public String ask(String systemPrompt, String userPrompt) {
-                if (userPrompt.contains("Candidate")) {
-                    return "Candidate 1: Array-based ring buffer\nCandidate 2: Linked node concurrent queue\nCandidate 3: Disrupter pattern ring";
-                }
-                return "Selected Approach: Candidate 3 (Disruptor pattern) for lowest memory latency and zero lock contention.";
+            public void stream(String prompt, Consumer<String> tokenHandler) {
+                tokenHandler.accept("Step output");
             }
 
-            @Override public String ask(String prompt, java.io.File file) { return ""; }
-            @Override public void stream(String prompt, java.util.function.Consumer<String> consumer) {}
-            @Override public void stream(String systemPrompt, String userPrompt, java.util.function.Consumer<String> consumer) {}
-            @Override public void stream(String prompt, java.io.File file, java.util.function.Consumer<String> consumer) {}
-            @Override public List<String> getModels() { return List.of("mock-reasoner"); }
+            @Override
+            public List<String> getModels() {
+                return List.of("mock-reasoner");
+            }
         };
 
         // 1. Chain-of-Thought (CoT) Demo

@@ -1,7 +1,6 @@
 @echo off
-
-echo [_BluePrint] Running Demo (via JitPack)...
-cd examples
-call mvn compile exec:java -Dexec.mainClass=fastXXX.Demo
-cd ..
-pause
+cd /d "%~dp0"
+echo [FastAIReasoner] Running Demo...
+cd examples\Demo
+call mvn compile exec:java -Dexec.mainClass=fastaireasoner.Demo
+cd ..\..
