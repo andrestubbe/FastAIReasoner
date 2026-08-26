@@ -18,7 +18,7 @@ FastAIReasoner provides structured cognitive search and reasoning capabilities f
 
 ---
 
-## Quick Start — Example
+## Quick Start
 
 ```java
 import fastai.AI;
@@ -107,6 +107,8 @@ Executes the deterministic tool actions selected by the reasoner.
 
 ### Option 1: Maven (Recommended)
 
+Add the JitPack repository and the dependencies to your `pom.xml`:
+
 ```xml
 <repositories>
     <repository>
@@ -116,18 +118,61 @@ Executes the deterministic tool actions selected by the reasoner.
 </repositories>
 
 <dependencies>
+    <!-- FastAIReasoner Library -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastAIReasoner</artifactId>
         <version>0.1.0</version>
     </dependency>
+
+    <!-- FastAI (Unified AI Client) -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
-        <artifactId>fastai</artifactId>
-        <version>0.1.7</version>
+        <artifactId>FastAI</artifactId>
+        <version>0.1.0</version>
     </dependency>
 </dependencies>
 ```
+
+### Option 2: Gradle (via JitPack)
+
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.andrestubbe:FastAIReasoner:0.1.0'
+    implementation 'com.github.andrestubbe:FastAI:0.1.0'
+}
+```
+
+### Option 3: Direct Download (No Build Tool)
+
+Download the latest JARs directly to add them to your classpath:
+
+1. 📦 **[fastaireasoner-0.1.0.jar](https://github.com/andrestubbe/FastAIReasoner/releases/download/0.1.0/fastaireasoner-0.1.0.jar)** (The Core Library)
+2. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (The Mandatory Native Loader)
+
+---
+
+## Documentation
+
+* **[REFERENCE.md](docs/REFERENCE.md)**: Core API reference manual.
+* **[PHILOSOPHY.md](docs/PHILOSOPHY.md)**: Multi-step reasoning and cognitive planning architecture.
+* **[COMPILE.md](docs/COMPILE.md)**: Build instructions.
+* **[CHANGELOG.md](docs/CHANGELOG.md)**: Project history and releases.
+* **[ROADMAP.md](docs/ROADMAP.md)**: Future milestones.
+
+---
+
+## Platform Support
+
+| Platform | Status |
+|----------|--------|
+| Windows 10/11 (x64) | ✅ Fully Supported |
+| Linux | 🚧 Planned |
+| macOS | 🚧 Planned |
 
 ---
 
