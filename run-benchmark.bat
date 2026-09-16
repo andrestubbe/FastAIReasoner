@@ -2,24 +2,23 @@
 setlocal
 cd /d "%~dp0"
 echo ===================================================
-echo  FastAIReasoner Demo
+echo  Building FastAIReasoner JMH Benchmarks Uber-Jar
 echo ===================================================
 echo [1/3] Building FastAIReasoner...
 call "C:\Users\andre\tools\apache-maven-3.9.9\bin\mvn.cmd" install -DskipTests
 if %ERRORLEVEL% NEQ 0 (
-    echo FastAIReasoner build failed!
+    echo FastAIReasoner install failed!
     exit /b %ERRORLEVEL%
 )
 
-echo [2/3] Compiling Demo...
-cd examples\Demo
-call "C:\Users\andre\tools\apache-maven-3.9.9\bin\mvn.cmd" compile
+echo [2/3] Building Benchmark Uber-JAR...
+cd examples\Benchmark
+call "C:\Users\andre\tools\apache-maven-3.9.9\bin\mvn.cmd" clean package
 if %ERRORLEVEL% NEQ 0 (
-    echo Demo compilation failed!
+    echo Benchmark package failed!
     exit /b %ERRORLEVEL%
 )
 
-echo [3/3] Running Demo...
-call "C:\Users\andre\tools\apache-maven-3.9.9\bin\mvn.cmd" exec:java "-Dexec.mainClass=fastaireasoner.Demo"
-cd ..\..
+echo [3/3] Running JMH Benchmarks...
+java -jar target\benchmarks.jar -f 1 -wi 2 -i 3 -tu ms -bm thrpt
 pause
