@@ -53,7 +53,7 @@ public class Demo {
 - [Key Features](#key-features)
 - [Architecture Overview](#architecture-overview)
 - [API Quick Reference](#api-quick-reference)
-- [Running Demos & Benchmarks](#running-demos--benchmarks)
+- [Technical Demos & Benchmarks](#technical-demos--benchmarks)
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Platform Support](#platform-support)
@@ -110,21 +110,12 @@ Standard LLM prompting generates linear, token-by-token text without internal ve
 
 ---
 
-## Running Demos & Benchmarks
+## Technical Demos & Benchmarks
 
-FastAIReasoner provides one-click batch scripts for verification and performance evaluation:
-
-### 1. Run Demo
-Showcases Chain-of-Thought and Tree-of-Thoughts planning strategies:
-```cmd
-run-demo.bat
-```
-
-### 2. Run JMH Benchmarks
-Measures throughput of reasoning strategies under realistic workloads:
-```cmd
-run-benchmark.bat
-```
+| Case | Java Example | Launcher | Description |
+|:---|:---|:---|:---|
+| **Cognitive Planning Demo** | [Demo.java](examples/Demo/src/main/java/fastaireasoner/Demo.java) | `run-demo.bat` | Chain-of-Thought (CoT) and Tree-of-Thoughts (ToT) multi-branch planning demo. |
+| **JMH Microbenchmark Suite** | [Benchmark.java](examples/Benchmark/src/main/java/fastaireasoner/benchmark/Benchmark.java) | `run-benchmark.bat` | JMH throughput benchmark measuring deduction and state exploration speed. |
 
 ---
 
